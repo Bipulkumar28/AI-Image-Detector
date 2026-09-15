@@ -1,47 +1,57 @@
 # 🔍 AI-Generated vs. Real Image Discriminator
 
-A deep learning system built using **EfficientNetB0 (Transfer Learning)** to classify images as either **Real Photographs** or **AI-Generated Imagery**, featuring **Grad-CAM visual explainability** and an interactive **Streamlit web application**.
+A deep learning system using **EfficientNetB0 Transfer Learning** to classify images as **Real** or **AI-Generated**, with **Grad-CAM explainability** and an interactive **Streamlit web application**.
 
----
+## 📌 Features
 
-## 📌 Project Overview
-* **Model Backbone:** EfficientNetB0 (Pretrained on ImageNet)
-* **Classifier Head:** GlobalAveragePooling2D → BatchNormalization → Dropout (0.4) → Sigmoid Dense Unit
-* **Performance:** 95.36% Test Accuracy | 0.9936 ROC-AUC
-* **Explainability:** Grad-CAM Heatmaps (targeting `top_activation` layer)
-* **Frontend:** Interactive Streamlit Dashboard
+* **Model:** EfficientNetB0 (ImageNet pretrained)
+* **Classifier:** GlobalAveragePooling → BatchNormalization → Dropout (0.4) → Sigmoid
+* **Test Accuracy:** 95.36%
+* **ROC-AUC:** 0.9936
+* **Explainability:** Grad-CAM (`top_activation` layer)
+* **Frontend:** Streamlit
 
+## ⚙️ Installation
 
-## ⚙️ Installation & Setup
+### 1. Create Virtual Environment
 
-### 1. Clone or Open Project Directory
-Open your terminal or PowerShell and navigate to your project root folder:
+**Windows:**
 
-cd path/to/AI_Image_Detector
-
-2. Create and Activate a Virtual Environment
-On Windows (PowerShell):
-
-PowerShell
+```powershell
 python -m venv venv
 .\venv\Scripts\Activate.ps1
-(If execution is blocked by policy, run Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process first)
+```
 
-On macOS / Linux:
+**macOS/Linux:**
 
-Bash
+```bash
 python3 -m venv venv
 source venv/bin/activate
-3. Install Required Packages
-Run the following command to install all necessary dependencies:
+```
 
-Bash
+### 2. Install Dependencies
+
+```bash
 python -m pip install --upgrade pip
-python -m pip install tensorflow streamlit opencv-python pillow numpy matplotlib seab
+python -m pip install tensorflow streamlit opencv-python pillow numpy matplotlib seaborn
+```
 
-How to Run the Application
-Launching the Streamlit UI
-Run the web application directly through Python:
+## 🚀 Run the Application
 
-Bash
+From the project directory:
+
+```bash
 python -m streamlit run app.py
+```
+
+Then open the local URL shown in the terminal, usually:
+
+```text
+http://localhost:8501
+```
+
+## 🧠 How It Works
+
+**Upload Image → EfficientNetB0 → Prediction → Confidence Score → Grad-CAM Heatmap**
+
+The model predicts whether an image is **Real** or **AI-Generated** and Grad-CAM highlights the regions that influenced the prediction.
